@@ -1,0 +1,50 @@
+<form name="editForm">
+    <div class="modal-header">
+        <h3 class="modal-title">Thông tin khu vực</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <label>Tên khu vực <span style="color: red; font-style: italic;">*</span></label> 
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                    <input id="focusElement" type="text" name="area_name" class="form-control" ng-model="newItem.area_name" ng-required="true" autofocus>
+                    <span class="red" ng-show="editForm.area_name.$invalid && (submitClicked)">Tên khu vực không được bỏ trống. Chỉ cho phép nhập tối đa 500 ký tự, vui lòng nhập lại</span>
+                    <span class="red" ng-show="errAreaNameExist">Tên khu vực đã tồn tại. Vui lòng nhập lại</span>
+                </div>
+            </div>                                             
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <label>Trạng thái:</label> 
+                </div>
+                <div class="col-md-7 col-sm-7 col-xs-7">
+                    <select style="width:125px" ng-model="newItem.status_selected" name="status_selected" ng-options="a.areaStatusName for a in areaStatus track by a.areaStatusID"></select>
+                </div>
+            </div>                
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-3">
+                    <label>Mô tả</label> 
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8">
+                    <textarea rows="5" class="form-control" name="description" ng-model="newItem.description" ng-maxlength="2000">
+                    </textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer form-group">
+        <div class="row">
+            <div class="col-md-5 col-xs-5 col-sm-5"><p style="color:red; font-style: italic; margin-top:5px;">(*)Cần cập nhật thông tin đầy đủ</p>
+            </div>
+            <div class="col-md-7 col-xs-7 col-sm-7">
+                <button class="btn btn-primary" type="submit" ng-click="save()" ng-disabled="clicked">Lưu</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Đóng</button>
+            </div>
+        </div>
+    </div>
+</form>

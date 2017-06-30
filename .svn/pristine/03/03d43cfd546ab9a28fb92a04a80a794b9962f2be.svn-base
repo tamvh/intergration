@@ -1,0 +1,110 @@
+<div id = "wrapper">
+    <div class="container body">
+        <div class="main_container">
+            <div ng-include src="'sidebar/sidebar.view.html'"></div> 
+            <!-- top -->
+            <div ng-include src="'header/header.view.html'"></div> 
+            <!-- main content -->
+            <div class="right_col" role="main" id="contentPage">
+                <div class="">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel ">
+
+                                <div class="x_content"> 
+                                    <div class="row" >
+                                        <div class="col-md-3 col-sm-3 col-xs-3">
+                                            <label>Tên khu vực:</label>
+                                            <input  class="form-control" ng-model="nameSearch" type="text" name="item_name_filter" placeholder="Nhập tên khu vực" />    
+                                        </div>
+                                        <div class="col-md-2 col-sm-3 col-xs-3" style="padding-top: 8px;">
+                                            <button id="searchBtn" type="submit" class="btn btn-warning btn-circle btn-lg" ng-click="getListAreas(1, itemPerPage)"><i class="fa fa-search"></i> </button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-7 col-sm-7 col-xs-7">
+                                            <button type="button" class="btn btn-success btn-circle btn-lg" ng-click="openPopupAddItem(size)()"><i class="fa fa-plus"></i>
+                                            </button>    
+                                            <button style="margin-left: 18px;" type="button" ng-click="deleteItems()" class="btn btn-danger btn-circle btn-lg"><i class="fa fa-times" ></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-5 col-sm-5 col-xs-5 mrtop30" align="right">
+                                            <label>Số dòng hiển thị </label>
+                                            <select ng-model="itemPerPage" name="itemPerPage" ng-options="item for item in itemByPageList" ng-change="changePageSize(itemPerPage)"></select>    
+                                            <label>/Trang</label>                    
+                                        </div>
+                                    </div>                          
+
+                                    <div class="table-responsive">
+                                        <table id="tbAreas" class="table table-hover table-condensed table-bordered jambo_table bulk_action">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 50px;"><input style="display:none;" type="checkbox" name="chkCateAll" ></th>
+                                                    <th class="col-md-2 col-sm-2 col-xs-2" style="width:300px">Tên khu vực</th>
+                                                    <th class="col-md-2 col-sm-2 col-xs-2" style="width:200px">Trạng thái</th>
+                                                    <th class="col-md-2 col-sm-2 col-xs-2" style="width:400px">Mô tả</th>
+                                                    <th class="col-md-1 col-sm-1 col-xs-1">Chức năng</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="area in listAreas">
+                                                    <td style="width: 50px;"><input type="checkbox" name="table_records" ng-model="area.delete_selected"></td>
+                                                    <td class="col-md-2 col-sm-2 col-xs-2 aln_left" style="width:300px">{{ area.area_name}}</td>
+                                                    <td class="col-md-2 col-sm-2 col-xs-2 aln_left" style="width:200px" ng-class="area.statusObj.areaColor">{{ area.statusObj.areaStatusName}}</td>
+                                                    <td class="col-md-2 col-sm-2 col-xs-2 aln_left" style="width:400px">{{ area.description}}</td>
+                                                    <td class="col-md-1 col-sm-1 col-xs-1">
+                                                        <div class="buttons" style="text-align: center;">
+                                                            <button class="btn btn-primary btn-circle fa fa-edit" ng-click="openPopupEditItem(size, $index, area)"></button>
+                                                        </div>  
+                                                    </td>   
+                                                </tr>
+                                            </tbody> 
+                                            <tfoot>                                
+                                                <tr ng-show="listAreas.length === 0">
+                                                    <td colspan="5" class="text-center">
+                                                        <p style="color:red;">Không tồn tại khu vực nào</p>                    
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td colspan="5" class="text-center">
+                                                        <uib-pagination class="my-pagination" total-items="totalAreas" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" boundary-link-numbers = "true" force-ellipses="true" items-per-page="itemPerPage" ng-change="getListAreas(currentPage, itemPerPage)"></uib-pagination>   
+                                                    </td>
+                                                </tr>
+                                            </tfoot>    
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>           
+        </div>        
+    </div>
+
+    <script>
+                $('a[data-toggle="tooltip"]').tooltip({
+                    animated: 'fade',
+                    placement: 'left',
+                    html: true
+                });
+    </script>
+    <script type="text/javascript">
+                $(document).on("keypress", function(e) {
+                    console.log("sjhdjas");
+                    if (e.keyCode == 13 || e.which == 13) {
+                        e.preventDefault();
+
+                        $("#searchBtn").click();
+
+
+                    }
+                });
+
+    </script>
+</div>
+

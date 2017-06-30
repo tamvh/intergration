@@ -1,0 +1,12 @@
+
+var MSG_C2S_TYPE = 0;
+var MSG_S2C_TYPE = 10000;
+
+
+//c2s
+var MSG_C2S_PING 				= MSG_C2S_TYPE + 1;
+
+
+//s2c
+var MSG_S2C_PONG 				= MSG_S2C_TYPE + 1;
+var MSG_S2C_PAYMENT_DONE		= MSG_S2C_TYPE + 2;

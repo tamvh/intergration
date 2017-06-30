@@ -1,0 +1,11 @@
+[server]
+http_port = 8585
+ws_port = 8586
+
+[zalopay]
+create_order_url = https://zalopay.zing.vn/v001/zp/createorder
+appid = 33
+appuser = ZaloPayIntegration
+key1 = nTgedHYgevwYA88Vbo3Ikso2x3i0RN0W
+key2 = LA7rkMeaYzpnemtHKn8zJQ1ozjvxM3Mo
+hmac_algorithm = HmacSHA256
