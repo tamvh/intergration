@@ -1,4 +1,0 @@
-//production
-
-var WS_URL = "ws://gbc.zing.vn/mcdemo/zp/ntf/?deviceid=";
-var API_URL = "http://gbc.zing.vn/mcdemo/zp/";
